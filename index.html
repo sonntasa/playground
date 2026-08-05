@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Playground &mdash; Samuel Sonntag</title>
+  <link rel="icon" type="image/svg+xml" href="https://samuel-sonntag.de/assets/brain.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300;400;600;800" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Playground</h1>
+      <p class="tagline">A couple of experiments with my own research &mdash; and my own CV.</p>
+      <a href="https://samuel-sonntag.de" class="back-link">&larr; back to samuel-sonntag.de</a>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="demo">Negation Demo</button>
+      <button class="tab-btn" data-tab="stats">Research Stats</button>
+    </div>
+
+    <!-- ── Negation / mouse-tracking demo ─────────────────────────────── -->
+    <div class="tab-panel active" id="panel-demo">
+      <section>
+        <h2>Does "NOT" slow you down?</h2>
+        <p class="subtext">
+          A tiny version of the mouse-tracking paradigm from my CogSci 2025 talk.
+          Read the sentence, then click-and-drag from the start circle to the
+          button it describes. Negated sentences ("NOT blue") tend to pull your
+          hand toward the wrong answer first &mdash; watch your own trajectory curve.
+        </p>
+
+        <div class="stimulus" id="stimulusText">Press start to begin</div>
+
+        <div class="trial-wrap" id="trialWrap">
+          <div class="target left" id="targetLeft">RED</div>
+          <div class="target right" id="targetRight">BLUE</div>
+          <canvas id="trailCanvas"></canvas>
+          <div class="start-btn" id="startBtn">start</div>
+        </div>
+
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--aff-color)"></i>Affirmative trials</span>
+          <span><i class="swatch" style="background:var(--neg-color)"></i>Negation trials</span>
+        </div>
+
+        <div class="trial-status" id="trialStatus">Trial 0 / 10 &mdash; click and hold "start" to begin</div>
+
+        <div class="results-box" id="resultsBox">
+          <div class="result-summary">
+            <div class="result-stat aff">
+              <div class="num" id="affCurve">&mdash;</div>
+              <div class="lbl">Avg. curvature<br />Affirmative</div>
+            </div>
+            <div class="result-stat neg">
+              <div class="num" id="negCurve">&mdash;</div>
+              <div class="lbl">Avg. curvature<br />Negation</div>
+            </div>
+            <div class="result-stat">
+              <div class="num" id="accuracy">&mdash;</div>
+              <div class="lbl">Accuracy</div>
+            </div>
+          </div>
+          <p class="subtext" id="resultsBlurb"></p>
+          <button class="reset-btn" id="resetBtn">Run again</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── Stats page ──────────────────────────────────────────────────── -->
+    <div class="tab-panel" id="panel-stats">
+      <section>
+        <h2>Output at a glance</h2>
+        <p class="subtext">Pulled from the same .bib files that power the CV on the main site.</p>
+        <div class="stat-grid" id="statGrid"></div>
+      </section>
+
+      <section>
+        <h2>Output by year</h2>
+        <div class="chart-wrap"><canvas id="yearChart"></canvas></div>
+      </section>
+
+      <section>
+        <h2>Frequent collaborators</h2>
+        <p class="subtext">How often each coauthor shows up across publications, talks, and datasets.</p>
+        <div class="chart-wrap"><canvas id="coauthorChart"></canvas></div>
+      </section>
+
+      <section>
+        <h2>Conference trail</h2>
+        <div id="timelineList"></div>
+      </section>
+    </div>
+  </div>
+
+  <label class="switch">
+    <input id="checkbox" type="checkbox" />
+    <span class="slider">
+      <div class="star star_1"></div>
+      <div class="star star_2"></div>
+      <div class="star star_3"></div>
+      <svg viewBox="0 0 16 16" class="cloud">
+        <path transform="matrix(.77976 0 0 .78395-299.99-418.63)" fill="#fff"
+          d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925">
+        </path>
+      </svg>
+    </span>
+  </label>
+
+  <!-- Shared BibTeX parser, loaded straight from the main site — single
+       source of truth, no copy-pasted parsing logic. -->
+  <script src="https://samuel-sonntag.de/lib/bib-utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
