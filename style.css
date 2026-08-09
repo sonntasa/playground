@@ -131,6 +131,8 @@ h1 {
   display: flex;
   gap: 12px;
   margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
 }
 
 .tab-btn {
@@ -362,6 +364,73 @@ h2 {
 }
 
 ::selection { background: var(--accent-prime); color: white; }
+
+/* ── Contact section ─────────────────────────────────────────────────────── */
+
+.contact-section {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-main);
+}
+
+.contact-section::after {
+  /* content: ""; */
+  /* position: absolute; */
+  /* left: 0; */
+  /* right: 0; */
+  /* bottom: 0; */
+  /* height: 4px; */
+  /* background: linear-gradient( */
+  /*   90deg, */
+  /*   var(--accent-prime) 0%, */
+  /*   color-mix(in srgb, var(--accent-prime), var(--accent-sec) 50%) 50%, */
+  /*   var(--accent-sec) 100% */
+  /* ); */
+  /* border-radius: 0 0 24px 24px; */
+}
+
+.contact-section-info {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.contact-info {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 30px;
+  border-top: 1px solid var(--back-alt);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-sec);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: var(--background);
+}
+
+.contact-item:hover {
+  background: var(--back-alt);
+  color: var(--accent-sec);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--accent-sec) 30%, transparent);
+}
+
+.contact-item svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
 
 /* ── Theme switch (copied from main site) ───────────────────────────── */
 .switch {
