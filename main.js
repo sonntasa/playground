@@ -59,14 +59,11 @@ async function loadLiveData() {
 
 // ── Theme toggle (same behavior as main site) ─────────────────────────────
 window.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("checkbox");
-  const saved = localStorage.getItem("theme") || "dark";
-  document.documentElement.setAttribute("data-theme", saved);
-  toggle.checked = saved === "light";
-  toggle.addEventListener("change", () => {
-    const next = toggle.checked ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const root = document.documentElement;
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
     if (window.__redrawCharts) window.__redrawCharts();
   });
 
@@ -335,7 +332,7 @@ async function initStats() {
 
   // Timeline
   const timelineList = document.getElementById("timelineList");
-  timelineList.innerHTML = CONFERENCES.map((c) => `
+  if (timelineList) timelineList.innerHTML = CONFERENCES.map((c) => `
     <div class="timeline-item">
       <div>
         <div class="timeline-title">${c.title}</div>
@@ -357,7 +354,8 @@ async function initStats() {
     if (yearChart) yearChart.destroy();
     if (coauthorChart) coauthorChart.destroy();
 
-    yearChart = new Chart(document.getElementById("yearChart"), {
+    const yc = document.getElementById("yearChart");
+    if (yc) yearChart = new Chart(yc, {
       type: "bar",
       data: {
         labels: years,
@@ -379,7 +377,8 @@ async function initStats() {
       },
     });
 
-    coauthorChart = new Chart(document.getElementById("coauthorChart"), {
+    const cc = document.getElementById("coauthorChart");
+    if (cc) coauthorChart = new Chart(cc, {
       type: "bar",
       data: {
         labels: coauthorEntries.map((e) => e[0]),

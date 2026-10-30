@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -8,29 +7,45 @@
   <link rel="icon" type="image/svg+xml" href="https://samuel-sonntag.de/assets/brain.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300;400;600;800" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
 </head>
-
 <body>
-  <div class="container">
-    <header>
-      <h1>Playground</h1>
-      <p class="tagline">
-        A couple of experiments with my own research &mdash; and my own CV.
-      </p>
-      <a href="https://samuel-sonntag.de" class="back-link">&larr; back to samuel-sonntag.de</a>
-    </header>
-
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="demo">Negation Demo</button>
-      <button class="tab-btn" data-tab="stats">Research Stats</button>
+  <nav class="topbar" aria-label="Main">
+    <a href="https://samuel-sonntag.de" class="brand">Samuel Sonntag</a>
+    <div class="nav-links">
+      <a href="https://samuel-sonntag.de">&larr; Back to main site</a>
+      <a href="#contact">Contact</a>
     </div>
+    <button id="theme-toggle" type="button" aria-label="Switch between light and dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+    </button>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <h1>Playground</h1>
+      <p class="lead">A couple of experiments with my own research and my own CV.</p>
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="demo">Negation demo</button>
+        <button class="tab-btn" data-tab="stats">Research stats</button>
+      </div>
+    </header>
 
     <!-- ── Negation / mouse-tracking demo ─────────────────────────────── -->
     <div class="tab-panel active" id="panel-demo">
       <section>
         <h2>Does "NOT" slow you down?</h2>
+        <div class="body">
         <p class="subtext">
           A tiny version of the mouse-tracking paradigm from my CogSci 2025
           talk. Read the sentence, then click-and-drag from the start circle
@@ -75,6 +90,7 @@
           <p class="subtext" id="resultsBlurb"></p>
           <button class="reset-btn" id="resetBtn">Run again</button>
         </div>
+      </div>
       </section>
     </div>
 
@@ -82,86 +98,34 @@
     <div class="tab-panel" id="panel-stats">
       <section>
         <h2>Output at a glance</h2>
+        <div class="body">
         <!-- <p class="subtext"> -->
         <!-- Pulled from the same .bib files that power the CV on the main site. -->
         <!-- </p> -->
         <div class="stat-grid" id="statGrid"></div>
+      </div>
       </section>
-
-      <!-- <section> -->
-      <!--   <h2>Output by year</h2> -->
-      <!--   <div class="chart-wrap"><canvas id="yearChart"></canvas></div> -->
-      <!-- </section> -->
-
-      <!-- <section> -->
-      <!--   <h2>Frequent collaborators</h2> -->
-      <!--   <p class="subtext"> -->
-      <!--     How often each coauthor shows up across publications, talks, and -->
-      <!--     datasets. -->
-      <!--   </p> -->
-      <!--   <div class="chart-wrap"><canvas id="coauthorChart"></canvas></div> -->
-      <!-- </section> -->
-
-      <!-- <section> -->
-      <!--   <h2>Conference trail</h2> -->
-      <!--   <div id="timelineList"></div> -->
-      <!-- </section> -->
     </div>
 
+    
     <section id="contact">
       <h2>Contact</h2>
-      <p class="contact-section">
-        I'm happy to hear from fellow researchers, prospective collaborators,
-        or anyone curious about my <b>research, myself, or CBT</b>. Don't
-        hesitate to reach out through any of the channels below.
-        <!-- Feel free to reach out via -->
-        <!-- <a href="mailto:samuel.sonntag@uni-tuebingen.de"> email </a> -->
-        <!-- or connect with me on the platforms listed above. -->
-      </p>
-      <div class="contact-section-info">
-        <a href="mailto:samuel.sonntag@uni-tuebingen.de" class="contact-item">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-          </svg>
-          samuel.sonntag@uni-tuebingen.de
-        </a>
-        <a href="https://www.researchgate.net/profile/Samuel-Sonntag" class="contact-item" target="_blank">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2L1 8l11 6 9-4.91V17h2V8L12 2zm-7 9.68V16l7 3.82 7-3.82v-4.32L12 16l-7-4.32z" />
-          </svg>
-          ResearchGate
-        </a>
-        <a href="https://www.linkedin.com/in/samuel-sonntag-76663b3b9" class="contact-item" target="_blank">
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-          </svg>
-          LinkedIn
-        </a>
+      <div class="body">
+        <p>
+          I&rsquo;m happy to hear from fellow researchers, prospective
+          collaborators, or anyone curious about my research, myself, or CBT.
+        </p>
+        <div class="pills">
+          <a class="pill primary" href="mailto:samuel.sonntag@uni-tuebingen.de">samuel.sonntag@uni-tuebingen.de</a>
+          <a class="pill" href="https://www.researchgate.net/profile/Samuel-Sonntag" target="_blank" rel="noopener">ResearchGate</a>
+          <a class="pill" href="https://www.linkedin.com/in/samuel-sonntag-76663b3b9" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
       </div>
     </section>
-  </div>
+  </main>
 
-  <label class="switch">
-    <input id="checkbox" type="checkbox" />
-    <span class="slider">
-      <div class="star star_1"></div>
-      <div class="star star_2"></div>
-      <div class="star star_3"></div>
-      <svg viewBox="0 0 16 16" class="cloud">
-        <path transform="matrix(.77976 0 0 .78395-299.99-418.63)" fill="#fff"
-          d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925">
-        </path>
-      </svg>
-    </span>
-  </label>
-
-  <!-- Shared BibTeX parser, loaded straight from the main site — single
-       source of truth, no copy-pasted parsing logic. -->
   <script src="https://samuel-sonntag.de/lib/bib-utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="main.js"></script>
 </body>
-
 </html>
